@@ -134,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Generator.h" />
+    <ClInclude Include="Geopoint.h" />
     <ClInclude Include="Helpers.h" />
     <ClInclude Include="Processor.h" />
   </ItemGroup>
