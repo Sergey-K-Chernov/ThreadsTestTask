@@ -7,7 +7,7 @@ public:
 	Generator();
 	~Generator();
 
-	void work();
+	void work(std::atomic_bool& stop_flag);
 	//Geopoint generate();
 
 private:

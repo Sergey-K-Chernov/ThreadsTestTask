@@ -7,7 +7,7 @@ public:
 	Processor();
 	~Processor();
 
-	void process();
+	void process(std::atomic_bool& stop_flag);
 
 private:
 	const unsigned int PERIOD_MIN = 100;

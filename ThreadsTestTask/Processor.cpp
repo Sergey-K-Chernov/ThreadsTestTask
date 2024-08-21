@@ -15,9 +15,9 @@ Processor::~Processor()
 }
 
 
-void Processor::process()
+void Processor::process(std::atomic_bool& stop_flag)
 {
-	while (true)
+	while (!stop_flag)
 	{
 		int processing_duration = distribution(random_generator);
 		// auto point = generate;

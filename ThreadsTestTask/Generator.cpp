@@ -16,9 +16,9 @@ Generator::~Generator()
 }
 
 
-void Generator::work()
+void Generator::work(std::atomic_bool& stop_flag)
 {
-	while (true)
+	while (!stop_flag)
 	{
 		int pause_duration = distribution(random_generator);
 		// auto point = generate;
