@@ -8,7 +8,7 @@ Generator::Generator()
 {
 	std::random_device rd;
 	random_generator = std::mt19937(rd());
-	distribution = std::uniform_int_distribution<>(GENERATION_PERIOD_MIN, GENERATION_PERIOD_MAX);
+	distribution = std::uniform_int_distribution<>(PERIOD_MIN, PERIOD_MAX);
 }
 
 Generator::~Generator()
