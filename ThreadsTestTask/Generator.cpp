@@ -33,7 +33,7 @@ void Generator::work(std::atomic_bool& stop_flag)
 
 		std::unique_lock<std::mutex> synchro_lock(synchro.mutex);
 		synchro.got_next = true;
-		std::cout << "Generator: " << pause_duration << '\n';
+		//std::cout << "Generator: " << pause_duration << '\n';
 		synchro.cv.notify_all();
 		
 	}

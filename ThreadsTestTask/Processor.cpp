@@ -38,10 +38,10 @@ void Processor::process(std::atomic_bool& stop_flag)
 			int processing_duration = distribution(random_generator);
 			delay(processing_duration);
 
-			std::cout << "Processor:\n"
-				<< "P1 = {" << pair.first.latitude << ", " << pair.first.longitude << "}\n"
-				<< "P2 = {" << pair.second.latitude << ", " << pair.second.longitude << "}\n"
-				<< processing_duration << '\n';
+			std::cout //<< "Processor:\n"
+				<< "{{" << pair.first.latitude << ", " << pair.first.longitude << "}, "
+				<< "{" << pair.second.latitude << ", " << pair.second.longitude << "}, "
+				<< processing_duration << "}\n";
 		}
 	}
 }
