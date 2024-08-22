@@ -2,10 +2,11 @@
 
 #include <iostream>
 #include "Helpers.h"
+#include "Synchronization.h"
 #include "PointsQueue.h"
 
 
-Generator::Generator(PointsQueue& queue) : queue(queue)
+Generator::Generator(PointsQueue& queue, SynchronizationData& synchro) : queue(queue), synchro(synchro)
 {
 	std::random_device rd;
 	random_generator = std::mt19937(rd());
@@ -25,11 +26,16 @@ void Generator::work(std::atomic_bool& stop_flag)
 	while (!stop_flag)
 	{
 		int pause_duration = delay_distribution(random_generator);
+		delay(pause_duration);
 
+		
 		queue.push(std::make_pair(generate(), generate()));
 
+		std::unique_lock<std::mutex> synchro_lock(synchro.mutex);
+		synchro.got_next = true;
 		std::cout << "Generator: " << pause_duration << '\n';
-		delay(pause_duration);
+		synchro.cv.notify_all();
+		
 	}
 }
 

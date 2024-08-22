@@ -1,5 +1,11 @@
 #include "PointsQueue.h"
 
+
+bool PointsQueue::empty() const
+{
+	return queue.empty();
+}
+
 const std::optional<PointPair> PointsQueue::get() const
 {
 	if (queue.empty())

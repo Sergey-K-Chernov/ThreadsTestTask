@@ -13,6 +13,7 @@ public:
 	PointsQueue() {}
 	~PointsQueue() {}
 
+	bool empty() const;
 	const std::optional<PointPair> get() const;
 	void push(PointPair&& data);
 	void pop();

@@ -47,5 +47,8 @@
     <ClInclude Include="PointsQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Synchronization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
