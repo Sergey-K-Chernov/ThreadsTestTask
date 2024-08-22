@@ -3,16 +3,22 @@
 
 #include "Geopoint.h"
 
+class PointsQueue;
+
 class Generator
 {
 public:
-	Generator();
+	Generator() = delete;
+	Generator(PointsQueue& queue);
+
 	~Generator();
 
 	void work(std::atomic_bool& stop_flag);
 	Geopoint generate();
 
 private:
+	PointsQueue& queue;
+
 	const unsigned int PERIOD_MIN = 200;
 	const unsigned int PERIOD_MAX = 500;
 

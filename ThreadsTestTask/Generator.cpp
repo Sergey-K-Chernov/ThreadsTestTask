@@ -2,9 +2,10 @@
 
 #include <iostream>
 #include "Helpers.h"
+#include "PointsQueue.h"
 
 
-Generator::Generator()
+Generator::Generator(PointsQueue& queue) : queue(queue)
 {
 	std::random_device rd;
 	random_generator = std::mt19937(rd());
@@ -24,10 +25,9 @@ void Generator::work(std::atomic_bool& stop_flag)
 	while (!stop_flag)
 	{
 		int pause_duration = delay_distribution(random_generator);
-		auto point1 = generate();
-		auto point2 = generate();
-		std::cout << "Generator: " << point1.latitude << ' ' << point1.longitude << ' ' << '\n';
-		std::cout << "Generator: " << point2.latitude << ' ' << point2.longitude << ' ' << '\n';
+
+		queue.push(std::make_pair(generate(), generate()));
+
 		std::cout << "Generator: " << pause_duration << '\n';
 		delay(pause_duration);
 	}
@@ -35,5 +35,9 @@ void Generator::work(std::atomic_bool& stop_flag)
 
 Geopoint Generator::generate()
 {
-	return { latitude_distribution(random_generator), longitude_distribution(random_generator) };
+	Geopoint g{
+		latitude_distribution(random_generator),
+		longitude_distribution(random_generator)
+	};
+	return g;
 }

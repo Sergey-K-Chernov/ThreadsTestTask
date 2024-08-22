@@ -3,13 +3,15 @@
 
 #include "Generator.h"
 #include "Processor.h"
+#include "PointsQueue.h"
 
 int main()
 {
 	std::atomic_bool stop_flag = false;
+	PointsQueue queue;
 
-	Generator generator;
-	Processor processor;
+	Generator generator(queue);
+	Processor processor(queue);
 
 	std::cout << "Press 'Enter' to start simulation then press 'Enter' again to stop it.";
 	std::cin.get();
